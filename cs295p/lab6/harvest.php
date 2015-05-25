@@ -1,23 +1,23 @@
 <?php
-	function isPrime($number)
+	function findEmailAddress($textToSearch)
 	{
-		$prime = true;
-		$div = 2;
-		do
+		$regEx = "";
+		$input = $textToSearch;
+		$emails = array();
+		
+		if (preg_match_all($regEx, $input, $phones) > 0)
 		{
-			if ($number % $div == 0)
-				$prime = false;
-			else
-				$div++;
+			foreach($emails[0] as $email)
+				echo $email . "<br />";
 		}
-		while ($div < $number && $prime == true);
-		return $prime;
+		else
+			echo "there were no phone numbers in the text provided";
+		
+		return $emails;
 	}
  
 	// some page level variables
-	$number = 0;
-	$prime = "";
-	$errorMessage = "";
+	$text
 
 	// tells me if the user has pressed the submit button
 	// previous examples checked to see if isset($_POST['submit'])
@@ -47,7 +47,7 @@
   </head>
   
   <body>
-    <form id="primeForm" name="primeForm" method="post" action="primeStart.php">
+    <form id="harvestForm" name="harvestForm" method="post" action="harvest.php">
       <p>Enter the number here:&nbsp;&nbsp;
       <input type="text" id="number" name="number" 
         value="<?php // echo the number entered by the user ?>" />
@@ -55,8 +55,8 @@
       </p>
       <p><input type="submit" value="Is It A Prime?" name="submit" /></p>
       <p>Answer:&nbsp;
-      <input type="text" id="prime" name="prime" 
-        value="<?php echo "$prime" ?>"/></p>
+      <input type="text" id="textToSearch" name="textToSearch" 
+        value="" /></p>
     </form>
   </body>
 </html>
